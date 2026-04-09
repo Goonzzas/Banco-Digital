@@ -1,0 +1,25 @@
+# This is the top-most EditorConfig file
+root = true
+
+[*]
+# Use Unix-style line endings (LF) for cross-platform compatibility
+end_of_line = lf
+# Ensure every file ends with a single newline
+insert_final_newline = true
+# Remove any whitespace before a newline
+trim_trailing_whitespace = true
+# Use UTF-8 character encoding
+charset = utf-8
+# Standard React/TS indentation: 2 spaces
+indent_style = space
+indent_size = 4
+quote_type = single
+
+# Configuration for specific file types
+[*.md]
+# Markdown files often require trailing whitespace for line breaks
+trim_trailing_whitespace = false
+
+[Makefile]
+# Makefiles require tabs instead of spaces
+indent_style = space

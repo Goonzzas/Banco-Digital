@@ -1,0 +1,45 @@
+# --- General ---
+.vscode/
+.idea/
+*.log
+.DS_Store
+
+# --- Backend (Spring Boot) ---
+banco_digital_api/target/
+banco_digital_api/.mvn/wrapper/maven-wrapper.jar
+banco_digital_api/.apt_generated
+banco_digital_api/.classpath
+banco_digital_api/.factorypath
+banco_digital_api/.project
+banco_digital_api/.settings
+banco_digital_api/.springBeans
+banco_digital_api/.sts4-cache
+banco_digital_api/*.iws
+banco_digital_api/*.iml
+banco_digital_api/*.ipr
+banco_digital_api/nbproject/private/
+banco_digital_api/nbbuild/
+banco_digital_api/dist/
+banco_digital_api/nbdist/
+banco_digital_api/.nb-gradle/
+banco_digital_api/build/
+
+# --- Local Database (H2) ---
+banco_digital_api/data/
+banco_digital_api/*_db*
+
+# --- Frontend (Vite/React) ---
+banco_digital_web/node_modules/
+banco_digital_web/dist/
+banco_digital_web/dist-ssr/
+banco_digital_web/*.local
+banco_digital_web/*.suo
+banco_digital_web/*.ntvs*
+banco_digital_web/*.njsproj
+banco_digital_web/*.sln
+banco_digital_web/*.sw?
+
+# --- Other temporary files ---
+tmp/
+run_output.log
+run_output_2.log
