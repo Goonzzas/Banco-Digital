@@ -33,6 +33,32 @@ const App = (): React.ReactElement => {
         }
     }, []);
 
+    // Lógica de Cierre de Sesión por Inactividad (15 minutos)
+    useEffect(() => {
+        if (!currentUser) return;
+
+        const INACTIVITY_LIMIT = 15 * 60 * 1000; // 15 minutos
+        let timeoutId: any;
+
+        const resetTimer = () => {
+            if (timeoutId) clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                handleLogout();
+                alert('Su sesión ha expirado por inactividad por motivos de seguridad.');
+            }, INACTIVITY_LIMIT);
+        };
+
+        const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
+        events.forEach(event => document.addEventListener(event, resetTimer));
+
+        resetTimer();
+
+        return () => {
+            if (timeoutId) clearTimeout(timeoutId);
+            events.forEach(event => document.removeEventListener(event, resetTimer));
+        };
+    }, [currentUser]);
+
     const handleLoginSuccess = (userData: any) => {
         setCurrentUser(userData);
         if (!userData.verified) {

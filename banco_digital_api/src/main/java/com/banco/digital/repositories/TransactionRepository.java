@@ -9,6 +9,9 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
-    @Query("SELECT t FROM Transaction t WHERE t.fromAccountId IN ?1 OR t.toAccountId IN ?1 ORDER BY t.createdAt DESC")
+    @Query("SELECT t FROM Transaction t WHERE (t.fromAccountId IN ?1 OR t.toAccountId IN ?1) ORDER BY t.createdAt DESC")
     List<Transaction> findByAccountIds(List<Long> accountIds);
+
+    @Query("SELECT t FROM Transaction t WHERE (t.fromAccountId IN ?1 OR t.toAccountId IN ?1) AND t.createdAt BETWEEN ?2 AND ?3 ORDER BY t.createdAt DESC")
+    List<Transaction> findByAccountIdsAndDateRange(List<Long> accountIds, java.time.LocalDateTime start, java.time.LocalDateTime end);
 }

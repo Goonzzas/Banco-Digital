@@ -23,7 +23,8 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout, onNavigate }): Re
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [accountToDelete, setAccountToDelete] = useState<any>(null);
 
-    const selfieUrl = user?.selfie ? `http://localhost:8081/uploads/${encodeURIComponent(user.selfie)}` : null;
+    const UPLOADS_URL = import.meta.env.VITE_UPLOADS_URL || 'http://localhost:8081/uploads';
+    const selfieUrl = user?.selfie ? `${UPLOADS_URL}/${encodeURIComponent(user.selfie)}` : null;
 
     const fetchData = async () => {
         setLoading(true);

@@ -66,12 +66,12 @@ const VerifyIdentity: React.FC<VerifyIdentityProps> = ({ user, onVerified }) => 
                 data.append('selfie', blob, 'selfie.jpg');
             }
 
-            const response = await api.post('/auth/verify-identity', data, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            });
+            const response = await api.post('/auth/verify-identity', data);
             onVerified(response.data);
         } catch (err: any) {
-            setError(err.response?.data || 'Error en la verificación');
+            const data = err.response?.data;
+            const message = typeof data === 'string' && data.trim() !== '' ? data : data?.message || data?.error || err.message || 'Error desconocido al verificar';
+            setError(message);
         } finally {
             setLoading(false);
         }
